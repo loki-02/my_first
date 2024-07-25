@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controls</title>
+    <style>
+        .toggle-button {
+            position: relative;
+            display: inline-block;
+            width: 120px; 
+            height: 60px; 
+        }
+
+        .toggle-button input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #FF0000; 
+            transition: .4s;
+            border-radius: 60px; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 52px; 
+            width: 52px; 
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50; 
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(60px); 
+        }
+
+        .slider::after {
+            content: 'OFF';
+            color: black;
+            font-size: 20px;
+            position: absolute;
+            right: 10px;
+        }
+
+        input:checked + .slider::after {
+            content: 'ON';
+            left: -43px;
+        }
+
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .control-panel h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="control-panel">
+        <h2>Control Panel</h2>
+        <label class="toggle-button" title="toggle">
+            <input type="checkbox" id="toggleButton">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('toggleButton');
+        toggleButton.addEventListener('change', function() {
+            if (this.checked) {
+                console.log('LED is ON');
+            } else {
+                console.log('LED is OFF');
+            }
+        });
+    </script>
+</body>
+</html>
